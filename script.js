@@ -1,25 +1,16 @@
-function countdown(minutes) {
-  var seconds = 60;
-  var mins = minutes
-  function tick() {
-    var counter = document.getElementById("timer");
-    var current_minutes = mins-1
-    seconds--;
-    counter.innerHTML =
-      current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-    if( seconds > 0 ) {
-      setTimeout(tick, 1000);
-    } else {
+<script type="text/javascript">
+  function count() {
 
-      if(mins > 1){
-
-  
-        setTimeout(function () { countdown(mins - 1); }, 1000);
-
-      }
-    }
-  }
-  tick();
+  var startTime = document.getElementById('hms').innerHTML;
+  var pieces = startTime.split(":");
+  var time = new Date();    time.setHours(pieces[0]);
+  time.setMinutes(pieces[1]);
+  time.setSeconds(pieces[2]);
+  var timedif = new Date(time.valueOf() - 1000);
+  var newtime = timedif.toTimeString().split(" ")[0];
+  document.getElementById('hms').innerHTML=newtime;
+  setTimeout(count, 1000);
 }
+count();
 
-countdown(2);
+</script>
