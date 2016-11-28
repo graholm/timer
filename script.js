@@ -1,30 +1,28 @@
-function countdown( elementName, minutes, seconds )
-{
-  var element, endTime, hours, mins, msLeft, time;
-
-  function twoDigits( n )
-  {
-    return (n <= 9 ? "0" + n : n);
-  }
-
-  function updateTimer()
-  {
-    msLeft = endTime - (+new Date);
-    if ( msLeft < 1000 ) {
-      element.innerHTML = "countdown's over!";
+<script type="text/javascript">
+  function countdown(minutes) {
+  var seconds = 60;
+  var mins = minutes
+  function tick() {
+    var counter = document.getElementById("timer");
+    var current_minutes = mins-1
+    seconds--;
+    counter.innerHTML =
+      current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+    if( seconds > 0 ) {
+      setTimeout(tick, 1000);
     } else {
-      time = new Date( msLeft );
-      hours = time.getUTCHours();
-      mins = time.getUTCMinutes();
-      element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
-      setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+
+      if(mins > 1){
+
+        // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+        setTimeout(function () { countdown(mins - 1); }, 1000);
+
+      }
     }
   }
-
-  element = document.getElementById( elementName );
-  endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-  updateTimer();
+  tick();
 }
 
-countdown( "countdown", 1, 5 );
-countdown( "countdown2", 100, 0 );
+countdown(2);
+
+</script>
