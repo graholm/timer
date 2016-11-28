@@ -1,5 +1,4 @@
-<script type="text/javascript">
-  function countdown(minutes) {
+function countdown(minutes) {
   var seconds = 60;
   var mins = minutes
   function tick() {
@@ -14,7 +13,7 @@
 
       if(mins > 1){
 
-        // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+  
         setTimeout(function () { countdown(mins - 1); }, 1000);
 
       }
@@ -24,5 +23,3 @@
 }
 
 countdown(2);
-
-</script>
