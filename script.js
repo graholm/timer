@@ -1,21 +1,30 @@
-$(document).ready(function (e) {
-  var $worked = $("#worked");
+function countdown( elementName, minutes, seconds )
+{
+  var element, endTime, hours, mins, msLeft, time;
 
-  function update() {
-    var myTime = $worked.html();
-    var ss = myTime.split(":");
-    var dt = new Date();
-    dt.setHours(1);
-    dt.setMinutes(ss[4]);
-    dt.setSeconds(ss[1]);
-
-    var dt2 = new Date(dt.valueOf() + 1000);
-    var temp = dt2.toTimeString().split(" ");
-    var ts = temp[0].split(":");
-
-    $worked.html(ts[1]+":"+ts[2]);
-    setTimeout(update, 1000);
+  function twoDigits( n )
+  {
+    return (n <= 9 ? "0" + n : n);
   }
 
-  setTimeout(update, 1000);
-});
+  function updateTimer()
+  {
+    msLeft = endTime - (+new Date);
+    if ( msLeft < 1000 ) {
+      element.innerHTML = "countdown's over!";
+    } else {
+      time = new Date( msLeft );
+      hours = time.getUTCHours();
+      mins = time.getUTCMinutes();
+      element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+      setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+    }
+  }
+
+  element = document.getElementById( elementName );
+  endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+  updateTimer();
+}
+
+countdown( "countdown", 1, 5 );
+countdown( "countdown2", 100, 0 );
