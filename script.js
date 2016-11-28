@@ -1,16 +1,32 @@
-<script type="text/javascript">
-  function count() {
 
-  var startTime = document.getElementById('hms').innerHTML;
-  var pieces = startTime.split(":");
-  var time = new Date();    time.setHours(pieces[0]);
-  time.setMinutes(pieces[1]);
-  time.setSeconds(pieces[2]);
-  var timedif = new Date(time.valueOf() - 1000);
-  var newtime = timedif.toTimeString().split(" ")[0];
-  document.getElementById('hms').innerHTML=newtime;
-  setTimeout(count, 1000);
+window.setTimeout("Tick()", 1000);
+
+function Tick() {
+  window.setTimeout("Tick()", 1000);
 }
-count();
 
-</script>
+
+
+
+var Timer;
+var TotalSeconds;
+
+
+function CreateTimer(TimerID, Time) {
+  Timer = document.getElementById(TimerID);
+  TotalSeconds = Time;
+
+  UpdateTimer()
+  window.setTimeout("Tick()", 1000);
+}
+
+function Tick() {
+  TotalSeconds -= 1;
+  UpdateTimer()
+  window.setTimeout("Tick()", 1000);
+}
+
+function UpdateTimer() {
+  Timer.innerHTML = TotalSeconds;
+}
+
