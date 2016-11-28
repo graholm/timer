@@ -5,8 +5,8 @@ $(document).ready(function (e) {
     var myTime = $worked.html();
     var ss = myTime.split(":");
     var dt = new Date();
-    dt.setHours(0);
-    dt.setMinutes(ss[0]);
+    dt.setHours(1);
+    dt.setMinutes(ss[4]);
     dt.setSeconds(ss[1]);
 
     var dt2 = new Date(dt.valueOf() + 1000);
