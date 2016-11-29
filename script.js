@@ -15,8 +15,6 @@ function startTimer(duration, display) {
   }, 1000);
 }
 
-jQuery(function ($) {
-  var fiveMinutes = 60 * 5,
-      display = $('#time');
-  startTimer(fiveMinutes, display);
-});
+var twoMinutes = 60 * 2,
+    display = $('#time');
+startTimer(twoMinutes, display);
