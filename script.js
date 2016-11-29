@@ -7,7 +7,7 @@ function startTimer(duration, display) {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    display.text(minutes + ":" + seconds);
+    display.text(minutes + " minutes," + seconds+ " seconds");
 
     if (--timer < 0) {
       timer = duration;
