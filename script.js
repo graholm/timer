@@ -20,16 +20,16 @@ var twoMinutes = 60 * 2,
 startTimer(twoMinutes, display);
 
 var input = $("#new-item-input")
+
 input.keydown(function(e) {	
   if (e.keyCode == "13") {
     var valueToSave = input.val();
-    console.log "valueToSave"
     addListItem("graceList", valueToSave);
+    console.log (valueToSave)
   }
 })
 
 
 onNewListItem("graceList", function(value) {
   $("#list-display").append("<div>" + value +"</div>")
-
 }) 
